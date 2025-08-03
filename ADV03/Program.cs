@@ -49,7 +49,33 @@ public class Program
     }
     #endregion
 
+    #region Question2
+    public class LibraryEngine
+    {
+        // the delegate
+        public delegate string BookFunction(Book b);
 
+        public static void ProcessBooks(List<Book> blist, BookFunction fPtr)
+        {
+            foreach (Book b in blist)
+            {
+                Console.WriteLine(fPtr(b));
+            }
+        }
+
+        // c. Anonymous Method
+        public static void ProcessBooksAnonymous(List<Book> blist)
+        {
+            ProcessBooks(blist, delegate (Book b) { return b.ISBN; });
+        }
+
+        // d. Lambda Expression
+        public static void ProcessBooksLambda(List<Book> blist)
+        {
+            ProcessBooks(blist, b => b.PublicationDate.ToShortDateString());
+        }
+    }
+    #endregion
     public static void Main(String[] args)
     {
 
